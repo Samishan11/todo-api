@@ -10,7 +10,7 @@ route.post('/post', async (req, res) => {
         })
         console.log(req.body)
         _post.save()
-        res.json({ message: "Todo Post Sucessfully", _post });
+        res.json(_post);
     } catch (error) {
         console.log(error)
         res.json(error)
@@ -19,6 +19,25 @@ route.post('/post', async (req, res) => {
 route.get('/get', async (req, res) => {
     try {
         const _res = await todoModal.find()
+        res.json(_res);
+    } catch (error) {
+        console.log(error)
+        res.json(error)
+    }
+})
+route.get('/get/:id', async (req, res) => {
+    try {
+        const _res = await todoModal.findById(req.params.id)
+        res.json(_res);
+    } catch (error) {
+        console.log(error)
+        res.json(error)
+    }
+})
+route.put('/update/:id', async (req, res) => {
+    try {
+        const _res = await todoModal.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        console.log(_res)
         res.json(_res);
     } catch (error) {
         console.log(error)
