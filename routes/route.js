@@ -46,7 +46,7 @@ route.delete('/delete/:id', async (req, res) => {
 })
 route.put('/update/:id', async (req, res) => {
     try {
-        const _res = await todoModal.findOneAndUpdate({_id:req.params.id}, req.body , {new:true})
+        const _res = await todoModal.findOneAndUpdate({_id:req.params.id}, req?.body , {new:true})
         res.json(_res);
     } catch (error) {
         console.log(error)
