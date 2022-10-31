@@ -44,5 +44,14 @@ route.put('/update/:id', async (req, res) => {
         res.json(error)
     }
 })
+route.delete('/delete/:id', async (req, res) => {
+    try {
+        const _res = await todoModal.findByIdAndDelete(req.params.id)
+        res.json(req.params.id);
+    } catch (error) {
+        console.log(error)
+        res.json(error)
+    }
+})
 
 module.exports = route;
